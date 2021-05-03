@@ -10,14 +10,8 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth.models import User
-from rest_framework_simplejwt.tokens import RefreshToken
 from requests.auth import HTTPBasicAuth
-
-
-def get_tokens_for_user(user):
-    refresh = RefreshToken.for_user(user)
-    return {"access_token": str(refresh.access_token)}
-
+from .utils import get_tokens_for_user
 
 class RegisterUsers(CreateAPIView):
     serializer_class = SignupSerializer
